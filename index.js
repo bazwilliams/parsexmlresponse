@@ -11,7 +11,9 @@ module.exports = function (callback) {
             body += chunk;
         });
         req.on('end', function () {
-            res.end()
+            if (res) {
+		res.end()
+	    }
             xmlParser.parseString(body, callback);
         });
     };
